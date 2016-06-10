@@ -48,22 +48,23 @@ class ViewController: UIViewController {
                 switch maze[y][x] {
                 case 1:
                     let wallView = createView(x: x, y: y, width: cellWidth, height: cellHeight, offsetX: cellOffsetX, offsetY: cellOffsetY)
-                        wallView.backgroundColor = UIColor.blackColor()
-                        view.addSubview(wallView)
-                        wallRectArray.append(wallView.frame)
+                    wallView.backgroundColor = UIColor.blackColor()
+                    view.addSubview(wallView)
+                    wallRectArray.append(wallView.frame)
                 case 2:
-                    let startView = createView(x: x, y: y, width: cellWidth, height: cellHeight, offsetX: cellOffsetX, offsetY: cellOffsetY)
-                        startView.backgroundColor = UIColor.greenColor()
-                        self.view.addSubview(startView)
+                    startView = createView(x: x, y: y, width: cellWidth, height: cellHeight, offsetX: cellOffsetX, offsetY: cellOffsetY)
+                    startView.backgroundColor = UIColor.greenColor()
+                    self.view.addSubview(startView)
                 case 3:
-                    let goalView = createView(x: x, y: y, width: cellWidth, height: cellHeight, offsetX: cellOffsetX, offsetY: cellOffsetY)
-                        goalView.backgroundColor = UIColor.redColor()
-                        self.view.addSubview(goalView)
+                    goalView = createView(x: x, y: y, width: cellWidth, height: cellHeight, offsetX: cellOffsetX, offsetY: cellOffsetY)
+                    goalView.backgroundColor = UIColor.redColor()
+                    self.view.addSubview(goalView)
                 default:
                     break
                 }
             }
         }
+        
         playerView = UIView(frame: CGRectMake(0, 0, screenSize.width / 60, screenSize.height / 60))
         playerView.center = startView.center
         playerView.backgroundColor = UIColor.grayColor()
@@ -74,22 +75,22 @@ class ViewController: UIViewController {
         
         self.startAccelerometer()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     func createView(x x: Int, y: Int, width: CGFloat, height: CGFloat, offsetX: CGFloat = 0, offsetY: CGFloat = 0) -> UIView{
-        let rect = CGRect(x :0, y: 0, width: width, height: height)
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
         let view = UIView(frame: rect)
         let center = CGPoint(
             x: offsetX + width * CGFloat(x),
             y: offsetY + height * CGFloat(y)
-    )
-    
+        )
+        
         view.center = center
         return view
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     func startAccelerometer(){
